@@ -34,10 +34,10 @@ const mostrarPedidos = async () => {
             const pedidoElement = document.createElement('div');
             pedidoElement.classList.add('pedido');
 
-            // Asegurarse de que 'pedido.timestamp' es una fecha válida
-            const fecha = new Date(pedido.timestamp);
+            // Verifica si 'pedido.timestamp' está presente. Si no, usa la fecha actual.
+            const fecha = pedido.timestamp ? new Date(pedido.timestamp) : new Date(); 
             const fechaFormateada = isNaN(fecha.getTime()) ? "Fecha inválida" : fecha.toLocaleDateString();
-            console.log('Timestamp:', pedido.timestamp);
+
             pedidoElement.innerHTML = `
                 <div class="pedido-header">
                     <h5>Pedido #${pedido.id}</h5>
@@ -68,4 +68,5 @@ const mostrarPedidos = async () => {
         console.error('Error al obtener pedidos:', error);
     }
 };
+
 
